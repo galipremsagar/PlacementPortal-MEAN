@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="bin\www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files (x86)/nodejs/node" path-to-js-file="$PROJECT_DIR$/../T&amp;P MEAN STACK APP/bin/www" working-dir="$PROJECT_DIR$/../T&amp;P MEAN STACK APP">
+    <envs>
+      <env name="DEBUG" value="untitled3:*" />
+    </envs>
+    <browser start="true" with-js-debugger="true" url="http://localhost:3000/" />
+    <method />
+  </configuration>
+</component>
