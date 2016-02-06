@@ -80,10 +80,15 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         $routeProvider
 
         // route for the home page
+            .when('/', {
+
+                templateUrl : '/default.html',
+                controller  : 'AppCtrl'
+            })
             .when('/w', {
 
                 templateUrl : '/contact.html',
-                controller  : 'AppCtrlp'
+                controller  : 'AppCtrl'
             });
 
         // Configure a dark theme with primary foreground yellow
