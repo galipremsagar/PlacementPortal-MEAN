@@ -89,6 +89,11 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
                 templateUrl : '/contact.html',
                 controller  : 'AppCtrl'
+            })
+            .when('/profile', {
+
+                templateUrl : '/profile.html',
+                controller  : 'AppCtrl'
             });
 
         // Configure a dark theme with primary foreground yellow
