@@ -59,10 +59,11 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             console.log(new Date());
 
         };
+
         $scope.intervalFunction = function(){
             $timeout(function() {
                 $scope.getData();
-                $scope.intervalFunction();
+                //$scope.intervalFunction();
             }, 1000)
         };
 
@@ -73,11 +74,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
     })
     .config(function($mdThemingProvider,$routeProvider) {
-
-
-
-
-        $routeProvider
+       $routeProvider
 
         // route for the home page
             .when('/', {
@@ -93,8 +90,13 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             .when('/profile', {
 
                 templateUrl : '/profile.html',
-                controller  : 'AppCtrl'
-            });
+                controller  : 'Profile_AppCtrl'
+            })
+           .when('/marks',{
+
+               templateUrl : '/marks.html',
+               controller : 'Marks_AppCtrl'
+           });
 
         // Configure a dark theme with primary foreground yellow
 
@@ -106,6 +108,40 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
     .controller('AppCtrlp', function($scope) {
     // create a message to display in our view
     $scope.message = 'Everyone come and see how good I look!';
+    })
+
+    .controller('Profile_AppCtrl', function($scope) {
+        // create a message to display in our view
+        $scope.message = 'Everyone come and see how good I look!';
+        $scope.go = function(){
+            console.log("go is hit()");
+        };
+        $scope.states = ('Haryana-Punjab-Goa-Chhattisgarh-Kerala-Karnatka-Bihar-Tamil Nadu-Chandigarh-Jammu and Kashmir-Dadra and Nagar Haveli-Jharkhand-Meghalaya-Delhi-Assam-Madhya Pradesh-West Bengal-Rajasthan-Uttar Pradesh-Manipur-Uttarakhand-Andhra Pradesh-Himachal Pradesh-Nagaland-Gujarat-Arunachal Pradesh-Maharashtra-Tripura-Telangana-Puducherry-Karnataka-Mizoram-Odisha-Andaman and Nicobar Islands').split('-').sort().map(function(state) {
+            return {abbrev: state};
+        })
+    })
+    .controller('Marks_AppCtrl', function($scope) {
+        // create a message to display in our view
+        var tabs = [
+            { title: '10th class', content: "Tabs will become paginated if there isn't enough room for them."},
+            { title: '12th class', content: "You can swipe left and right on a mobile device to change tabs."},
+                { title: '1st Sem', content: "Tabs will become paginated if there isn't enough room for them."},
+                { title: '2nd Sem', content: "You can swipe left and right on a mobile device to change tabs."},
+                { title: '3rd Sem', content: "You can bind the selected tab via the selected attribute on the md-tabs element."},
+                { title: '4th Sem', content: "If you set the selected tab binding to -1, it will leave no tab selected."},
+                { title: '5th Sem', content: "If you remove a tab, it will try to select a new one."},
+                { title: '6th Sem', content: "There's an ink bar that follows the selected tab, you can turn it off if you want."},
+                { title: '7th Sem', content: "If you set ng-disabled on a tab, it becomes unselectable. If the currently selected tab becomes disabled, it will try to select the next tab."},
+                { title: '8th Sem', content: "If you look at the source, you're using tabs to look at a demo for tabs. Recursion!"}
+            ];
+
+        $scope.tabs = tabs;
+        $scope.mobileNumber = "hi";
+        $scope.go = function()
+        {
+            $scope.mobileNumber = $scope.mobileNumber;
+            console.log($scope.mobileNumber);
+        };
     })
 
     .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
