@@ -1,0 +1,12 @@
+
+    <md-card style="width: 300px;" ng-repeat="user in x track by $index">
+        <img ng-src="{{user.logo_url}}" height="100px" width="100px" class="md-card-image" alt="user avatar">
+        <md-card-content>
+            <h2>{{user.company_name}}</h2>
+            <p>{{user.JD}}</p>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+            <md-button>Reject(chances)</md-button>
+            <md-button>View</md-button>
+        </div>
+    </md-card>
