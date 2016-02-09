@@ -2,14 +2,49 @@
  * Created by KH9143 on 27-12-2015.
  */
 angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
-    .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http) {
+    .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http,$q) {
         console.log("loaded");
 
         $scope.toggleLeft = buildToggler('left');
         $scope.isOpenLeft = function(){
             return $mdSidenav('left').isOpen();
         };
-        /**
+
+
+
+        // Lists of fruit names and Vegetable objects
+        $scope.fruitNames = ['CSE', 'IT', 'MECH','EEE','ECE',];
+        $scope.roFruitNames = angular.copy($scope.fruitNames);
+        $scope.tags = [];
+        $scope.vegObjs = [
+            {
+                'name' : 'Broccoli',
+                'type' : 'Brassica'
+            },
+            {
+                'name' : 'Cabbage',
+                'type' : 'Brassica'
+            },
+            {
+                'name' : 'Carrot',
+                'type' : 'Umbelliferous'
+            }
+        ];
+
+        $scope.getSelectedChipIndex = function(event) {
+            console.log("event..................");
+            var selectedChip = angular.element(event.currentTarget).controller('mdChips').selectedChip;
+
+        };
+
+        $scope.newVeg = function(chip) {
+            return {
+                name: chip,
+                type: 'unknown'
+            };
+        };
+
+/**
          * Supplies a function that will continue to operate until the
          * time is up.
          */
