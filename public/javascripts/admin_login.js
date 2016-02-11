@@ -4,13 +4,27 @@
 angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
     .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http,$q) {
         console.log("loaded");
+        var tabs = [
+                { title: 'CSE', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]  },
+                { title: 'IT', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
+                { title: 'MECH', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
+                { title: 'EEE', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
+                { title: 'CIVIL', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
+                { title: 'ECE', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]}
+            ],
+            selected = null,
+            previous = null;
+        $scope.branches = tabs;
 
         $scope.toggleLeft = buildToggler('left');
         $scope.isOpenLeft = function(){
             return $mdSidenav('left').isOpen();
         };
 
-
+        $scope.pr = function()
+        {
+          console.log($scope.branches);
+        };
 
         // Lists of fruit names and Vegetable objects
         $scope.fruitNames = ['CSE', 'IT', 'MECH','EEE','ECE',];
