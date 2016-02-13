@@ -18,8 +18,6 @@ router.post('/companies',function(req,res,next) {
 
     var client = new pg.Client(connect_string);
     client.connect();
-
-
     pg.connect(connect_string, function(err, client, done) {
 
         // SQL Query > Delete Data
