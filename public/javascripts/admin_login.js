@@ -4,6 +4,53 @@
 angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
     .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http,$q) {
         console.log("loaded");
+        $scope.ctc = " ";
+        $scope.jobDescription = " ";
+        $scope.driveProcess = " ";
+        $scope.companyDescription = " ";
+        $scope.cutoff_cgpa = 0;
+        $scope.send = function()
+        {
+            var drive_data = {
+                companyName : $scope.companyName,
+                ctc :  parseInt($scope.ctc , 10),
+                dateOfPlacementDrive : $scope.dateOfPlacementDrive,
+                companyType : $scope.companyType,
+                jobRole : $scope.jobRole,
+                jobDescription: $scope.jobDescription,
+                driveProcess: $scope.driveProcess,
+                venue: $scope.venue,
+                reportingTime: $scope.reportingTime,
+                companyDescription : $scope.companyDescription,
+                branchNames: $scope.branchNames,
+                cutoff_cgpa: $scope.cutoff_cgpa
+            };
+            console.log(drive_data);
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/adminlogin/companies',
+                json: true,
+                headers: {
+                    "content-type": "application/json",
+                },
+                data : drive_data
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+            /*$http.post('http://localhost:3000/login/companies').success(function(response){
+                //$scope.signupResponse = response.success;
+                console.log(response);
+                $scope.x = response;
+                console.log(response,"success");
+
+            });*/
+        };
+
         var tabs = [
                 { title: 'CSE', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]  },
                 { title: 'IT', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
@@ -23,12 +70,12 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
         $scope.pr = function()
         {
-          console.log($scope.branches);
+          //console.log($scope.branches);
         };
 
         // Lists of fruit names and Vegetable objects
         $scope.fruitNames = ['CSE', 'IT', 'MECH','EEE','ECE',];
-        $scope.roFruitNames = angular.copy($scope.fruitNames);
+        $scope.branchNames = angular.copy($scope.fruitNames);
         $scope.tags = [];
         $scope.vegObjs = [
             {
