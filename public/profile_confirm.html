@@ -1,0 +1,134 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Confirm changes?</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div layout="row" layout-align="center center" style="width: 100%;">
+                <md-content layout-padding="" style="overflow: hidden;">
+
+                    <div >
+                        <form name="userForm">
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-xs="">
+                                    <label>First name</label>
+                                    <input ng-model="user.firstName" ng-disabled="!editableInput">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm="">
+                                    <label>Last Name</label>
+                                    <input ng-model="user.lastName" ng-disabled="!editableInput">
+                                </md-input-container>
+                            </div>
+
+                            <div layout-gt-xs="row">
+                                <md-input-container class="md-block" flex-gt-xs="">
+                                    <label>Mobile Number</label>
+                                    <input name="mobileNumber" ng-model="user.mobileNumber" required="" ng-pattern="/^[0-9]{10}$/" md-maxlength="10" ng-disabled="!editableInput">
+                                </md-input-container>
+
+
+                                <md-datepicker ng-model="user.dateOfBirth" md-placeholder="Date of Birth" ng-disabled="!editableInput" >
+                                    <label>Date of Birth</label>
+                                </md-datepicker>
+                            </div>
+
+                            <div layout-gt-xs="column">
+                                <md-input-container class="md-block" flex-gt-xs="">
+                                    <label>Father name</label>
+                                    <input ng-model="user.fatherName" ng-disabled="!editableInput">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-xs="">
+                                    <label>Mother name</label>
+                                    <input ng-model="user.motherName" ng-disabled="!editableInput">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-xs="">
+                                    <label>Intermediate</label>
+                                    <input ng-model="user.interMediate" ng-disabled="!editableInput" >
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-xs="">
+                                    <label>10th</label>
+                                    <input ng-model="user.tenth" ng-disabled="!editableInput" >
+                                </md-input-container>
+
+
+                            </div>
+
+
+
+                            <md-input-container class="md-block">
+                                <label>Address Line 1</label>
+                                <input ng-model="user.address" ng-disabled="!editableInput">
+                            </md-input-container>
+
+                            <md-input-container  class="md-block">
+                                <input ng-model="user.address2" placeholder="Address Line 2" ng-disabled="!editableInput">
+                            </md-input-container>
+
+                            <div layout-gt-sm="row">
+                                <md-input-container class="md-block" flex-gt-sm="">
+                                    <label>City</label>
+                                    <input ng-model="user.city" ng-disabled="!editableInput">
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm="">
+                                    <label>State</label>
+                                    <md-select ng-model="user.state" ng-disabled="!editableInput">
+                                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                            {{state.abbrev}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+
+                                <md-input-container class="md-block" flex-gt-sm="">
+                                    <label>Postal Code</label>
+                                    <input name="postalCode" ng-model="user.postalCode" required="" ng-pattern="/^[0-9]{6}$/" md-maxlength="6" ng-disabled="!editableInput">
+
+                                    <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
+                                        <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                                        <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                                            code.
+                                        </div>
+                                        <div ng-message="md-maxlength" class="my-message">
+                                            Eh! Looks like you are giving a wrong PIN-CODE....!
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <md-input-container class="md-block">
+                                <label>Write about yourself</label>
+                                <textarea ng-model="user.biography" columns="1" md-maxlength="300" rows="5" ng-disabled="!editableInput"></textarea>
+                            </md-input-container>
+
+
+                        </form>
+                    </div>
+
+
+
+                </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-raised md-warn" ng-click="answer('not useful')" style="margin-right:20px;">
+                Don't Save
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="answer('useful')" >
+                Save
+            </md-button>
+        </md-dialog-actions>
+    </form>
+
+</md-dialog>
