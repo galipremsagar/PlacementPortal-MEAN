@@ -48,8 +48,8 @@ angular
 
 
         $scope.getData = function(){
-                $scope.user.firstName = new Date();
-                    console.log('Fetched data!');
+            $scope.user.firstName = new Date();
+            console.log('Fetched data!');
 
         };
         $scope.intervalFunction = function(){

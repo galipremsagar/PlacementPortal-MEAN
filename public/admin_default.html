@@ -104,10 +104,10 @@
                 <div class="demo-tab branch{{$index%4}}" style="padding: 25px; text-align: center;">
                     <md-list-item ng-repeat="student in branch.students">
 
-                    <md-checkbox class="md-primary" ng-model="student.eligible" ng-checked="pr();">
+                        <md-checkbox class="md-primary" ng-model="student.eligible" ng-checked="pr();">
 
-                    </md-checkbox>
-                    <p style="text-align: left;">{{ student.name }}</p>
+                        </md-checkbox>
+                        <p style="text-align: left;">{{ student.name }}</p>
                     </md-list-item>
                 </div>
             </md-tab>

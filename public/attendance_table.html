@@ -1,18 +1,18 @@
 <!-- md-table jade template-->
 <div style="width: 100%;" >
-<table align="center" cellspacing="10">
-  <tr align="center">
-    <th>Company Name</th>
-    <th>Hiring decision</th>
-    <th>Attendance</th>
-  </tr>
+  <table align="center" cellspacing="10">
+    <tr align="center">
+      <th>Company Name</th>
+      <th>Hiring decision</th>
+      <th>Attendance</th>
+    </tr>
 
-  <tr align="center" ng-repeat = "company in companies">
-    <td>{{ company.company_name }}</td>
-    <td>{{ company.placed }}</td>
-    <td>{{ company.attendance }}</td>
-  </tr>
+    <tr align="center" ng-repeat = "company in companies">
+      <td>{{ company.company_name }}</td>
+      <td>{{ company.placed }}</td>
+      <td>{{ company.attendance }}</td>
+    </tr>
 
-</table>
-  </div>
+  </table>
+</div>
 
