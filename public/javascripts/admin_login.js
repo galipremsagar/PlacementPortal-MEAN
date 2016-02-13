@@ -160,8 +160,8 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         $scope.go = function(){
             console.log("go is hit()");
         };
-        $scope.states = ('Haryana-Punjab-Goa-Chhattisgarh-Kerala-Karnatka-Bihar-Tamil Nadu-Chandigarh-Jammu and Kashmir-Dadra and Nagar Haveli-Jharkhand-Meghalaya-Delhi-Assam-Madhya Pradesh-West Bengal-Rajasthan-Uttar Pradesh-Manipur-Uttarakhand-Andhra Pradesh-Himachal Pradesh-Nagaland-Gujarat-Arunachal Pradesh-Maharashtra-Tripura-Telangana-Puducherry-Karnataka-Mizoram-Odisha-Andaman and Nicobar Islands').split('-').sort().map(function(state) {
-            return {abbrev: state};
+        $scope.drives = ('TECH_M-AMAZON-NTT').split('-').sort().map(function(drives) {
+            return {abbrev: drives};
         })
     })
     .controller('approvals_AppCtrl', function($scope) {

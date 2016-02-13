@@ -1,0 +1,43 @@
+<div layout="row" layout-align="center center" style="width: 100%;">
+    <md-content layout-padding="" style="overflow: hidden;">
+
+        <div >
+            <form name="userForm">
+                <md-select ng-model="selected_drive">
+                    <md-option ng-repeat="drive in drives" value="{{drive.abbrev}}">
+                        {{drive.abbrev}}
+                    </md-option>
+                </md-select>
+                <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
+                    <md-button class="md-raised md-warn" ng-click="clear();">CLEAR</md-button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <md-button class="md-raised " ng-click="go();disabled=true;" >SHOW STUDENTS</md-button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <md-button class="md-raised md-primary" ng-click="go();disabled=false;" ng-disabled="!disabled">POST ATTENDANCE</md-button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <md-tabs md-selected="selectedIndex" md-border-bottom md-autoselect>
+            <md-tab ng-repeat="branch in branches"
+                    ng-disabled="branch.disabled"
+                    label="{{branch.title}}">
+                <div class="demo-tab branch{{$index%4}}" style="padding: 25px; text-align: center;">
+                    <md-list-item ng-repeat="student in branch.students">
+
+                        <md-checkbox class="md-primary" ng-model="student.eligible" ng-checked="pr();">
+
+                        </md-checkbox>
+                        <p style="text-align: left;">{{ student.name }}</p>
+                    </md-list-item>
+                </div>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+
+
+</div>
