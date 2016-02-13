@@ -82,10 +82,10 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
                 templateUrl : '/default.html',
                 controller  : 'AppCtrl'
             })
-            .when('/w', {
+            .when('/attendance', {
 
-                templateUrl : '/contact.html',
-                controller  : 'AppCtrl'
+                templateUrl : '/attendance_table.html',
+                controller  : 'Attendance_AppCtrl'
             })
             .when('/profile', {
 
@@ -105,10 +105,40 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         .dark();
 
     })
-    .controller('AppCtrlp', function($scope) {
-    // create a message to display in our view
-    $scope.message = 'Everyone come and see how good I look!';
-    })
+    .controller('Attendance_AppCtrl',['$scope', function($scope) {
+
+
+        $scope.companies = [
+            {
+                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+                company_name: 'Bruno Mars',
+                placed: 'Yes',
+                attendance: 'Absent'
+            },{
+                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+                company_name: 'Bruno Mars',
+                placed: 'Yes',
+                attendance: 'Absent'
+            },{
+                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+                company_name: 'Bruno Mars',
+                placed: 'Yes',
+                attendance: 'Absent'
+            },{
+                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+                company_name: 'Bruno Mars',
+                placed: 'Yes',
+                attendance: 'Absent'
+            },{
+                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+                company_name: 'Bruno Mars',
+                placed: 'Yes',
+                attendance: 'Absent'
+            }
+        ];
+
+    }])
+
 
     .controller('Profile_AppCtrl', function($scope,$mdDialog, $mdMedia) {
         // create a message to display in our view
