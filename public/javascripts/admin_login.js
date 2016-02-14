@@ -15,11 +15,47 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             console.log("----------------------");
             console.log(new_tabs);
             console.log("----------------------");
+
+            company_eligibles = {
+                companyName : $scope.companyName,
+                array_of_students : []
+            };
+
+            for (i in new_tabs)
+            {
+                for(j in new_tabs[i].students)
+                {
+                    if(new_tabs[i].students[j].eligible==true)
+                    {
+                        company_eligibles.array_of_students.push({pin:new_tabs[i].students[j].pin,attendance:false,hiring_decision:false});
+                    }
+                }
+            }
+            console.log("<--------------->");
+            console.log(company_eligibles);
+            console.log("<--------------->");
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/adminlogin/drive',
+                json: true,
+                headers: {
+                    "content-type": "application/json",
+                },
+                data : company_eligibles
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+
+
+            }, function errorCallback(response) {
+                console.log("HTTP:ERROR CALLBACK");
+            });
         };
-        
+
         $scope.get_list = function()
         {
-            var drive_data = {
+            drive_data = {
                 companyName : $scope.companyName,
                 ctc :  parseInt($scope.ctc , 10),
                 dateOfPlacementDrive : $scope.dateOfPlacementDrive,
@@ -35,11 +71,11 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             };
             console.log(drive_data);
             $http({
-                method: 'GET',
+                method: 'POST',
                 url: 'http://localhost:3000/adminlogin/companies',
                 json: true,
                 headers: {
-                    "content-type": "application/json",
+                    "content-type": "application/json"
                 },
                 data : drive_data
             }).then(function successCallback(response) {
@@ -54,7 +90,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
                     { title: 'EEE', students:[]  },
                     { title: 'CIVIL', students:[]  },
                     { title: 'ECE', students:[]  }
-                    ];
+                ];
                 for(i in response.data.result)
                 {
                     console.log("IN LOOP.........");
@@ -82,7 +118,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
                             break;
                     }
 
-                    console.log(new_tabs[index].students.push({name:response.data.result[i]['last name'],eligible:true}));//['students'].push({name:response.data.result[i].lastName,eligible:true});
+                    console.log(new_tabs[index].students.push({name:response.data.result[i]['last name'],eligible:true,pin:parseInt(response.data.result[i].pin, 10) }));
                 }
                 $scope.branches = new_tabs;
 
