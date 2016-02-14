@@ -9,7 +9,14 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         $scope.driveProcess = " ";
         $scope.companyDescription = " ";
         $scope.cutoff_cgpa = 0;
+
         $scope.send = function()
+        {
+            console.log("----------------------");
+            console.log(new_tabs);
+            console.log("----------------------");
+        }
+        $scope.get_list = function()
         {
             var drive_data = {
                 companyName : $scope.companyName,
@@ -37,41 +44,64 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
-                console.log(response);
+                console.log("OUTSIDE LOOP.........");
+                console.log(response.data.result);
+                new_tabs = [
+                    { title: 'CSE', students:[]  },
+                    { title: 'IT', students:[]  },
+                    { title: 'MECH', students:[]  },
+                    { title: 'EEE', students:[]  },
+                    { title: 'CIVIL', students:[]  },
+                    { title: 'ECE', students:[]  }
+                    ];
+                for(i in response.data.result)
+                {
+                    console.log("IN LOOP.........");
+                    console.log(response.data.result[i].branch);
+                    console.log(new_tabs);
+                    switch (response.data.result[i].branch)
+                    {
+                        case 'CSE':
+                            index = 0;
+                            break;
+                        case 'IT':
+                            index = 1;
+                            break;
+                        case 'MECH':
+                            index = 2;
+                            break;
+                        case 'EEE':
+                            index = 3;
+                            break;
+                        case 'CIVIL':
+                            index = 4;
+                            break;
+                        case 'ECE':
+                            index = 5;
+                            break;
+                    }
+
+                    console.log(new_tabs[index].students.push({name:response.data.result[i]['last name'],eligible:true}));//['students'].push({name:response.data.result[i].lastName,eligible:true});
+                }
+                $scope.branches = new_tabs;
+
             }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
+                console.log("HTTP:ERROR CALLBACK");
             });
 
-            /*$http.post('http://localhost:3000/login/companies').success(function(response){
-             //$scope.signupResponse = response.success;
-             console.log(response);
-             $scope.x = response;
-             console.log(response,"success");
 
-             });*/
         };
 
-        var tabs = [
-                { title: 'CSE', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]  },
-                { title: 'IT', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
-                { title: 'MECH', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
-                { title: 'EEE', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
-                { title: 'CIVIL', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]},
-                { title: 'ECE', students:[{name:"prem",eligible:true} , { name:"prem",eligible:true}]}
-            ],
-            selected = null,
-            previous = null;
-        $scope.branches = tabs;
 
         $scope.toggleLeft = buildToggler('left');
         $scope.isOpenLeft = function(){
             return $mdSidenav('left').isOpen();
         };
 
-        $scope.pr = function()
+        $scope.pr = function(student)
         {
-            //console.log($scope.branches);
+            console.log(student);
+            console.log($scope.branches);
         };
 
         // Lists of fruit names and Vegetable objects

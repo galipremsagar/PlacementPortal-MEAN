@@ -47,6 +47,7 @@ router.post('/companies',function(req,res,next) {
             query_branch.on('row', function (row) {
                 console.log("pushing....."+row);
                 results.push(row);
+
             });
 
             console.log(req.body.branchNames[i]);

@@ -7,7 +7,7 @@
                     <md-button class="md-raised md-warn" ng-click="clear();">CLEAR</md-button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <md-button class="md-raised " ng-click="send();disabled=true;">SHOW STUDENTS</md-button>
+                    <md-button class="md-raised " ng-click="get_list();disabled=true;">SHOW STUDENTS</md-button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <md-button class="md-raised " ng-click="send();disabled=false" ng-disabled="!disabled;">SEND NOTIFICATIONS</md-button>
@@ -104,7 +104,7 @@
                 <div class="demo-tab branch{{$index%4}}" style="padding: 25px; text-align: center;">
                     <md-list-item ng-repeat="student in branch.students">
 
-                        <md-checkbox class="md-primary" ng-model="student.eligible" ng-checked="pr();">
+                        <md-checkbox class="md-primary" ng-model="student.eligible">
 
                         </md-checkbox>
                         <p style="text-align: left;">{{ student.name }}</p>
