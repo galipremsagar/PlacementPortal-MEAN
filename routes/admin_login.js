@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
     res.render('admin_login');
 });
 
-router.post('/companies',function(req,res,next) {
+router.get('/companies',function(req,res,next) {
     /*console.log("....start");
      console.log(JSON.stringify(req.body));
      console.log(req.body.ctc);

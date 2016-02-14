@@ -15,7 +15,8 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             console.log("----------------------");
             console.log(new_tabs);
             console.log("----------------------");
-        }
+        };
+        
         $scope.get_list = function()
         {
             var drive_data = {
@@ -34,7 +35,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             };
             console.log(drive_data);
             $http({
-                method: 'POST',
+                method: 'GET',
                 url: 'http://localhost:3000/adminlogin/companies',
                 json: true,
                 headers: {
