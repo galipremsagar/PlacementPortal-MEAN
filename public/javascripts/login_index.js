@@ -63,8 +63,8 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         $scope.intervalFunction = function(){
             $timeout(function() {
                 $scope.getData();
-                //$scope.intervalFunction();
-            }, 1000)
+                $scope.intervalFunction();
+            }, 10000)
         };
 
         // Kick off the interval
