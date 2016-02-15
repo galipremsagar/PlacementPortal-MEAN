@@ -68,7 +68,7 @@ router.post('/companies',function(req,res,next) {
             console.log(temp_pin);
         });
         companies_tables.forEach(function(x,i){
-           console.log("x:"+x+"i:"+i);
+            console.log("x:"+x+"i:"+i);
         });
         companies_tables.forEach(function(company,index){
             var query_2 = client.query("SELECT * FROM "+company+";");
@@ -81,7 +81,7 @@ router.post('/companies',function(req,res,next) {
                 {
                     console.log("pushing..."+company+"-------------"+results);
                     //if(final_results.indexOf(results[company])==-1)
-                        final_results[company]=results[company];
+                    final_results[company]=results[company];
                 }
                 console.log(temp_pin);
             });
@@ -89,8 +89,7 @@ router.post('/companies',function(req,res,next) {
 
         });
 
-        query_1.on('end',function(row)
-        {
+        query_1.on('end',function(row){
             done();
             return res.json(final_results);
             //final_results = [];

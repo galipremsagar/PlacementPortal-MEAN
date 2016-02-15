@@ -9,7 +9,7 @@ var router = express.Router();
 var pg = require('pg');
 var results = [];
 
-
+var temp;
 function parseCookies (request) {
     var list = {},
         rc = request.headers.cookie;
@@ -137,7 +137,39 @@ router.post('/companies',function(req,res,next) {
 });
 
 
+router.get('/companies',function(req,res,next) {
 
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+
+    var client = new pg.Client(connect_string);
+    client.connect();
+
+    pg.connect(connect_string, function(err, client, done) {
+        var companies_tables = [];
+        // SQL Query > Delete Data
+        query = client.query("SELECT * FROM placement_drives");
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            //console.log(row.company_table_name);
+            temp = row.company_table_name;
+            console.log("Companies names----------"+companies_tables);
+
+            if(companies_tables.indexOf(row.company_table_name)==-1)
+                companies_tables.push(row.company_table_name);
+        });
+
+        console.log("results",companies_tables);
+
+        query.on('end',function(row){
+            done();
+            console.log("BEFORE SENDING---------"+companies_tables);
+            return res.json({result:companies_tables});
+            //final_results = [];
+        });
+
+    });
+});
 
 
 

@@ -270,15 +270,31 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         $scope.message = 'Everyone come and see how good I look!';
     })
 
-    .controller('admin_attendance_AppCtrl', function($scope) {
+    .controller('admin_attendance_AppCtrl', function($scope,$http) {
         // create a message to display in our view
         $scope.message = 'Everyone come and see how good I look!';
         $scope.go = function(){
             console.log("go is hit()");
         };
-        $scope.drives = ('TECH_M-AMAZON-NTT').split('-').sort().map(function(drives) {
-            return {abbrev: drives};
-        })
+        $scope.drives;
+        $scope.refresh = function()
+        {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3000/adminlogin/companies'
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                console.log("THIS IS RESP OF COMPANY LISTS"+response.data.result);
+                $scope.drives = response.data.result;
+
+            }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+        };
+        $scope.refresh();
+
     })
     .controller('approvals_AppCtrl', function($scope) {
         // create a message to display in our view
