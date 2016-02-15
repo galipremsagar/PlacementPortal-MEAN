@@ -2,7 +2,7 @@
  * Created by KH9143 on 27-12-2015.
  */
 angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
-    .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http,$q) {
+    .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http,$q,$window) {
         console.log("loaded");
         $scope.ctc = " ";
         $scope.jobDescription = " ";
@@ -40,14 +40,14 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
                 url: 'http://localhost:3000/adminlogin/drive',
                 json: true,
                 headers: {
-                    "content-type": "application/json",
+                    "content-type": "application/json"
                 },
                 data : company_eligibles
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
 
-
+                $window.alert("Success");
             }, function errorCallback(response) {
                 console.log("HTTP:ERROR CALLBACK");
             });
