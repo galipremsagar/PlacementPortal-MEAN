@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/companies',function(req,res,next) {
     console.log(req.body.name);
+
     var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
 
     var client = new pg.Client(connect_string);
