@@ -270,11 +270,71 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         $scope.message = 'Everyone come and see how good I look!';
     })
 
-    .controller('admin_attendance_AppCtrl', function($scope,$http) {
+    .controller('admin_attendance_AppCtrl', function($scope,$http,$window) {
         // create a message to display in our view
         $scope.message = 'Everyone come and see how good I look!';
+        $scope.branches;
         $scope.go = function(){
-            console.log("go is hit()");
+            drive_json = {
+                drive: $scope.selected_drive
+            };
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/adminlogin/students',
+                json: true,
+                headers: {
+                    "content-type": "application/json"
+                },
+                data : drive_json
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+                console.log("OUTSIDE LOOP.........");
+                console.log(response.data.result);
+                console.log(response.data.company_related_info);
+                new_tabs = [
+                    { title: 'CSE', students:[]  },
+                    { title: 'IT', students:[]  },
+                    { title: 'MECH', students:[]  },
+                    { title: 'EEE', students:[]  },
+                    { title: 'CIVIL', students:[]  },
+                    { title: 'ECE', students:[]  }
+                ];
+                for(i in response.data.result)
+                {
+                    console.log("IN LOOP.........");
+                    console.log(response.data.result[i].branch);
+                    console.log(new_tabs);
+                    switch (response.data.result[i].branch)
+                    {
+                        case 'CSE':
+                            index = 0;
+                            break;
+                        case 'IT':
+                            index = 1;
+                            break;
+                        case 'MECH':
+                            index = 2;
+                            break;
+                        case 'EEE':
+                            index = 3;
+                            break;
+                        case 'CIVIL':
+                            index = 4;
+                            break;
+                        case 'ECE':
+                            index = 5;
+                            break;
+                    }
+
+                    console.log(new_tabs[index].students.push({name:response.data.result[i]['last name'],attendance:response.data.company_related_info[i].attendance,pin:parseInt(response.data.result[i].pin, 10)}));
+                }
+                $scope.branches = new_tabs;
+
+            }, function errorCallback(response) {
+                alert("HTTP:ERROR CALLBACK");
+            });
+
         };
         $scope.drives;
         $scope.refresh = function()
@@ -294,6 +354,51 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             });
         };
         $scope.refresh();
+
+
+        $scope.publish = function()
+        {
+            console.log("----------------------");
+            console.log(new_tabs);
+            console.log("----------------------");
+
+            present_list = {
+                companyName : $scope.selected_drive,
+                array_of_students : []
+            };
+
+            for (i in new_tabs)
+            {
+                for(j in new_tabs[i].students)
+                {
+                    if(new_tabs[i].students[j].attendance==true)
+                    {
+                        present_list.array_of_students.push({pin:new_tabs[i].students[j].pin,attendance:true});
+                    }
+                }
+            }
+            console.log("<--------------->");
+            console.log(present_list);
+            console.log("<--------------->");
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/adminlogin/update_attendance',
+                json: true,
+                headers: {
+                    "content-type": "application/json"
+                },
+                data : present_list
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+
+                $window.alert("Success");
+            }, function errorCallback(response) {
+                console.log("HTTP:ERROR CALLBACK");
+            });
+        };
+
 
     })
     .controller('approvals_AppCtrl', function($scope) {

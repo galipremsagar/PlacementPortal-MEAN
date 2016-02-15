@@ -171,9 +171,131 @@ router.get('/companies',function(req,res,next) {
     });
 });
 
+router.post('/students',function(req,res,next) {
+    /*console.log("....start");
+     console.log(JSON.stringify(req.body));
+     console.log(req.body.ctc);
+     console.log("....stop");*/
+    cookies = parseCookies(req);
+    console.log(cookies);
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+    var students_tables={};
+    var all_branches = {};
+    var client = new pg.Client(connect_string);
+    client.connect();
+
+
+    pg.connect(connect_string, function(err, client, done) {
+
+        console.log(req.body.drive);
+        // SQL Query > Delete Data
+        var query = client.query("SELECT * FROM "+req.body.drive+";");
+
+        query.on('row', function(row) {
+            //console.log(row.company_table_name);
+            temp = row.pin_number;
+            console.log("Companies names----------"+temp);
+            students_tables[row.pin_number] = row;
+            console.log(students_tables);
+        });
+
+        setTimeout(function(){
+
+            console.log("came after first one");
+            console.log(students_tables);
+            console.log("loop start");
+            Object.keys(students_tables).forEach(function(student_pin,index){
+                console.log("stud pin: "+student_pin);
+                var query_branch = client.query("SELECT * FROM mdb WHERE (pin= $1);",[parseInt(student_pin,10)]);
+                query_branch.on('row', function (row) {
+                    console.log("pushing....."+row);
+                    all_branches[row.pin] =row;
+                });
+                query_branch.on('end',function(row){
+                    console.log("res json",all_branches);
+                    return res.json({result:all_branches,company_related_info:students_tables});
+                });
+
+            });
+            console.log("loop end");
+        },1000);
+
+        /*for (i in req.body.branchNames)
+         {
+         var query_branch = client.query("SELECT * FROM mdb WHERE (btech_percentage>= $1 AND branch= $2);",[req.body.cutoff_cgpa*10,req.body.branchNames[i]]);
+         query_branch.on('row', function (row) {
+         console.log("pushing....."+row);
+         results.push(row);
+
+         });
+
+         console.log(req.body.branchNames[i]);
+
+         }
+         console.log("outside"+results);
+         //var fetch_query = client.query("SELECT * FROM ")
+         // Stream results back one row at a time
+         /*query.on('row', function(row) {
+
+         results.push(row);
+
+         });*/
+        //console.log(yac);
+        //console.log("results",results);
+
+        // After all data is returned, close connection and return results
+        /*query_branch.on('end', function() {
+         done();
+         console.log("END");
+         return res.json({result:results});
+         });
+         */
+
+
+        console.log("clearing...");
+        results = [];
+        console.log("cleared....");
+    });
+
+
+});
 
 
 
+router.post('/update_attendance',function(req,res,next) {
+    /*console.log("....start");
+     console.log(JSON.stringify(req.body));
+     console.log(req.body.ctc);
+     console.log("....stop");*/
+    cookies = parseCookies(req);
+    console.log(cookies);
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+    var students_tables={};
+    var all_branches = {};
+    var client = new pg.Client(connect_string);
+    client.connect();
+    console.log(req.body);
+    console.log("YAY");
+
+    pg.connect(connect_string, function(err, client, done) {
+
+
+        req.body.array_of_students.forEach(function (pin,index) {
+            console.log("PIN::"+pin.pin+"INDEX::"+index);
+            query = client.query("UPDATE "+req.body.companyName+" SET attendance=$1 WHERE pin_number=$2;",[true,pin.pin]);
+
+        });
+
+        query.on('end', function() {
+         done();
+         console.log("END");
+         return res.json({result:"success"});
+         });
+
+    });
+
+
+});
 
 
 
