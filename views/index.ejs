@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Login">
 <head>
-  <title><%= title %></title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <meta charset="UTF-8">
+  <title>Login Home</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+  <!--<link rel='stylesheet prefetch' href='https://material.angularjs.org/1.0.1-master-2eaf210/docs.css'>-->
+
+  <link rel="stylesheet" href="stylesheets/angular_style.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-messages.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
+
+
+  <!-- Angular Material Library -->
+  <script src="https://code.angularjs.org/1.4.9/angular-route.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.js"></script>
+  <script src="javascripts/login_page.js"></script>
+
+
+
 </head>
-<body>
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
+<body >
+
+<div ng-controller="AppCtrl"  ng-cloak="" layout-fill >
+  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+    <div>
+      <md-input-container>
+        <label>PIN</label>
+        <input ng-model="pin">
+      </md-input-container>
+      <md-input-container>
+        <label>password</label>
+        <input ng-model="password" type="password">
+      </md-input-container>
+      <md-button class="md-raised" ng-click="go();">Button</md-button>
+    </div>
+  </md-content>
+</div>
 </body>
 </html>
