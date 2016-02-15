@@ -20,7 +20,7 @@ angular.module('Login', ['ngMaterial','ngRoute'])
                 url: 'http://localhost:3000/auth',
                 json: true,
                 headers: {
-                    "content-type": "application/json",
+                    "content-type": "application/json"
                 },
                 data : credentials
             }).then(function successCallback(response) {
