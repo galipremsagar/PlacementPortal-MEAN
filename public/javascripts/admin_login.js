@@ -58,6 +58,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             drive_data = {
                 companyName : $scope.companyName,
                 ctc :  parseInt($scope.ctc , 10),
+                logoUrl: $scope.logoUrl,
                 dateOfPlacementDrive : $scope.dateOfPlacementDrive,
                 companyType : $scope.companyType,
                 jobRole : $scope.jobRole,

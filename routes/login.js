@@ -6,7 +6,8 @@ var router = express.Router();
 var pg = require('pg');
 var results = [];
 var companies_tables = [];
-
+var final_results = [];
+var temp_pin;
 function parseCookies (request) {
     var list = {},
         rc = request.headers.cookie;
@@ -41,17 +42,16 @@ router.post('/companies',function(req,res,next) {
         query.on('row', function(row) {
             //console.log(row.company_table_name);
             var temp = row.company_table_name;
-            results.push({temp:row});
+            results[row.company_table_name]=row;
             companies_tables.push(row.company_table_name);
         });
-        //console.log(yac);
-        //console.log("results",companies_tables);
+        console.log(results);
+        console.log("results",companies_tables);
 
         // After all data is returned, close connection and return results
         query.on('end', function() {
             done();
             //return res.json(results);
-
         });
 
         console.log(cookies);
@@ -60,13 +60,37 @@ router.post('/companies',function(req,res,next) {
 
         query_1.on('row', function(row) {
             //console.log(row.company_table_name);
-            var temp_pin = row.pin;
+            temp_pin = row.pin;
             console.log(temp_pin);
+        });
+
+        for(company in companies_tables)
+        {
+            query_2 = client.query("SELECT * FROM "+companies_tables[company]);
+
+            query_2.on('row', function(row) {
+                //console.log(row.company_table_name);
+
+                if(row.pin_number==temp_pin)
+                {
+                    final_results.push(results[companies_tables[company]]);
+                }
+                console.log(temp_pin);
+            });
+
+
+        }
+
+        query_1.on('end',function(row)
+        {
+            done();
+            return res.json(final_results);
         });
 
         console.log("clearing...");
         results = [];
         console.log("cleared....");
+
     });
 
 

@@ -88,7 +88,7 @@ router.post('/companies',function(req,res,next) {
         // SQL Query > Delete Data
         var query = client.query("INSERT INTO placement_drives (company_name, company_table_name, logo_url, company_description,job_description, ctc," +
             " date_of_drive, company_type, job_role, process, venue, reporting_time, branches, btech_cutoff)" +
-            " VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14);",[req.body.companyName, req.body.companyName, ' ', req.body.companyDescription,req.body.jobDescription, req.body.ctc, req.body.dateOfPlacementDrive, req.body.companyType, req.body.jobRole,req.body.driveProcess, req.body.venue, req.body.reportingTime, req.body.branchNames, req.body.cutoff_cgpa]);
+            " VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14);",[req.body.companyName, req.body.companyName, req.body.logoUrl, req.body.companyDescription,req.body.jobDescription, req.body.ctc, req.body.dateOfPlacementDrive, req.body.companyType, req.body.jobRole,req.body.driveProcess, req.body.venue, req.body.reportingTime, req.body.branchNames, req.body.cutoff_cgpa]);
 
         query.on('end', function() {
             done();
