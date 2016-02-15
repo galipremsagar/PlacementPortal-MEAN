@@ -16,7 +16,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/drive', function(req, res, next) {
-    console.log(res.body);
+    console.log("came to notify");
+    console.log(req.body);
+    console.log("end  to notify");
+    return res.json({success:"Successful"});
 });
 
 router.post('/companies',function(req,res,next) {
