@@ -13,5 +13,18 @@
     "express": "~4.13.1",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galipremsagar/Website--MEAN.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/galipremsagar/Website--MEAN/issues"
+  },
+  "homepage": "https://github.com/galipremsagar/Website--MEAN#readme",
+  "description": ""
 }
