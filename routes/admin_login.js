@@ -10,6 +10,18 @@ var pg = require('pg');
 var results = [];
 
 
+function parseCookies (request) {
+    var list = {},
+        rc = request.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+
+    return list;
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.render('admin_login');
@@ -27,6 +39,8 @@ router.post('/companies',function(req,res,next) {
      console.log(JSON.stringify(req.body));
      console.log(req.body.ctc);
      console.log("....stop");*/
+    cookies = parseCookies(req);
+    console.log(cookies);
     var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
 
     var client = new pg.Client(connect_string);

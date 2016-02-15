@@ -58,7 +58,7 @@ router.post('/auth', function(req, res, next) {
 
     console.log("THIS is result");
     console.log(results);
-        // After all data is returned, close connection and return results
+    // After all data is returned, close connection and return results
     query.on('end', function() {
       done();
       //return res.json(results);
