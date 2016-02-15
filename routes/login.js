@@ -4,9 +4,10 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
+var temp;
 var results = [];
 var companies_tables = [];
-var final_results = [];
+var final_results = {};
 var temp_pin;
 function parseCookies (request) {
     var list = {},
@@ -33,6 +34,7 @@ router.post('/companies',function(req,res,next) {
 
     var client = new pg.Client(connect_string);
     client.connect();
+
     pg.connect(connect_string, function(err, client, done) {
 
         // SQL Query > Delete Data
@@ -41,11 +43,13 @@ router.post('/companies',function(req,res,next) {
         // Stream results back one row at a time
         query.on('row', function(row) {
             //console.log(row.company_table_name);
-            var temp = row.company_table_name;
+            temp = row.company_table_name;
             results[row.company_table_name]=row;
-            companies_tables.push(row.company_table_name);
+            console.log("immediately---------->"+results[row.company_table_name]);
+            if(companies_tables.indexOf(row.company_table_name)==-1)
+                companies_tables.push(row.company_table_name);
         });
-        console.log(results);
+        console.log("+++++++++++++++++++end"+results[temp]+"start+++++++++++++++++++++++++++++++++++++");
         console.log("results",companies_tables);
 
         // After all data is returned, close connection and return results
@@ -63,36 +67,44 @@ router.post('/companies',function(req,res,next) {
             temp_pin = row.pin;
             console.log(temp_pin);
         });
-
-        for(company in companies_tables)
-        {
-            query_2 = client.query("SELECT * FROM "+companies_tables[company]);
+        companies_tables.forEach(function(x,i){
+           console.log("x:"+x+"i:"+i);
+        });
+        companies_tables.forEach(function(company,index){
+            var query_2 = client.query("SELECT * FROM "+company+";");
+            console.log("outside company is==================>"+company);
 
             query_2.on('row', function(row) {
                 //console.log(row.company_table_name);
-
+                console.log("INSIDE COMPANY IS---------->"+company);
                 if(row.pin_number==temp_pin)
                 {
-                    final_results.push(results[companies_tables[company]]);
+                    console.log("pushing..."+company+"-------------"+results);
+                    //if(final_results.indexOf(results[company])==-1)
+                        final_results[company]=results[company];
                 }
                 console.log(temp_pin);
             });
 
 
-        }
+        });
 
         query_1.on('end',function(row)
         {
             done();
             return res.json(final_results);
+            //final_results = [];
         });
 
         console.log("clearing...");
-        results = [];
+        //results = [];
+        //companies_tables = [];
+
+
         console.log("cleared....");
 
     });
-
+    //final_results = [];
 
 });
 
