@@ -2,7 +2,7 @@
  * Created by KH9143 on 27-12-2015.
  */
 angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
-    .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http) {
+    .controller('AppCtrl', function($scope,$timeout, $mdSidenav, $log,$http,$window,$mdDialog) {
         console.log("loaded");
 
         $scope.toggleLeft = buildToggler('left');
@@ -66,7 +66,23 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
                 $scope.intervalFunction();
             }, 5000)
         };
+        $scope.logout = function() {
+            $window.location.href = "http://locahost:3000/";
 
+        };
+
+        $scope.dialog_1 = function()
+        {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    //.targetEvent(originatorEv)
+                    .clickOutsideToClose(true)
+                    .parent('body')
+                    .title('Traning and placement contact details')
+                    .textContent('HOD,TNP : 8989897667\nFC, IT: 9911223344\nTPO, TNP: 9087654321')
+                    .ok('Okay')
+            );
+        };
         // Kick off the interval
         $scope.intervalFunction();
         console.log("hi");
@@ -148,7 +164,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         };
         $scope.states = ('Haryana-Punjab-Goa-Chhattisgarh-Kerala-Karnatka-Bihar-Tamil Nadu-Chandigarh-Jammu and Kashmir-Dadra and Nagar Haveli-Jharkhand-Meghalaya-Delhi-Assam-Madhya Pradesh-West Bengal-Rajasthan-Uttar Pradesh-Manipur-Uttarakhand-Andhra Pradesh-Himachal Pradesh-Nagaland-Gujarat-Arunachal Pradesh-Maharashtra-Tripura-Telangana-Puducherry-Karnataka-Mizoram-Odisha-Andaman and Nicobar Islands').split('-').sort().map(function(state) {
             return {abbrev: state};
-        })
+        });
 
         $scope.showAdvanced = function(ev) {
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
