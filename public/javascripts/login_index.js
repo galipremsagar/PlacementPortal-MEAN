@@ -126,29 +126,28 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
         $scope.companies = [
             {
-                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
                 company_name: 'Bruno Mars',
-                placed: 'Yes',
+
                 attendance: 'Absent'
             },{
-                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+
                 company_name: 'Bruno Mars',
-                placed: 'Yes',
+
                 attendance: 'Absent'
             },{
-                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+
                 company_name: 'Bruno Mars',
-                placed: 'Yes',
+
                 attendance: 'Absent'
             },{
-                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+
                 company_name: 'Bruno Mars',
-                placed: 'Yes',
+
                 attendance: 'Absent'
             },{
-                thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
+
                 company_name: 'Bruno Mars',
-                placed: 'Yes',
+
                 attendance: 'Absent'
             }
         ];
