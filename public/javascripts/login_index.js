@@ -152,6 +152,9 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             }
         ];
 
+        $scope.update = function(){
+
+        };
     }])
 
 
