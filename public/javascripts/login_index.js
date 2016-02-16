@@ -67,7 +67,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             }, 5000)
         };
         $scope.logout = function() {
-            $window.location.href = "http://locahost:3000/";
+            $window.location.href = "http://localhost:3000/";
 
         };
 
@@ -121,7 +121,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             .dark();
 
     })
-    .controller('Attendance_AppCtrl',['$scope', function($scope) {
+    .controller('Attendance_AppCtrl', function($scope,$http,$window) {
 
 
         $scope.companies = [
@@ -154,8 +154,33 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
         $scope.update = function(){
 
+            present_list = {value:"abc"};
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/login/attendance',
+                json: true,
+                headers: {
+                    "content-type": "application/json"
+                },
+                data : present_list
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+
+                //$window.alert("Success");
+                console.log(response);
+                $scope.companies_list = Object.keys(response.data.op);
+                $scope.companies_dict = response.data.op;
+                for(i in $scope.companies)
+                {
+                    console.log(i);
+                }
+            }, function errorCallback(response) {
+                console.log("HTTP:ERROR CALLBACK");
+            });
         };
-    }])
+        $scope.update();
+    })
 
 
     .controller('Profile_AppCtrl', function($scope,$mdDialog, $mdMedia) {

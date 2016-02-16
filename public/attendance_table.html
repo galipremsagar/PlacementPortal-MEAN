@@ -7,10 +7,10 @@
       <th>Attendance</th>
     </tr>
 
-    <tr align="center" ng-repeat = "company in companies">
-      <td>{{ company.company_name }}</td>
+    <tr align="center" ng-repeat = "company in companies_list">
+      <td>{{ company }}</td>
 
-      <td>{{ company.attendance }}</td>
+      <td>{{ (companies_dict[company].attendance) ? "present":"absent" }}</td>
     </tr>
 
   </table>
