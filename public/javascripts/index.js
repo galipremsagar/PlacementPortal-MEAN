@@ -39,7 +39,7 @@ angular
         })
         $scope.go = function () {
             console.log($scope.user.state);
-            $http.post('http://localhost:3000/signup',{'name': $scope.user.state}).success(function(response){
+            $http.post('/signup',{'name': $scope.user.state}).success(function(response){
                 $scope.signupResponse = response.success;
                 console.log(response.success,"success");
                 $scope.alertOpen(response.success,response.reason);

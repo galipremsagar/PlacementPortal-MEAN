@@ -37,7 +37,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/adminlogin/drive',
+                url: '/adminlogin/drive',
                 json: true,
                 headers: {
                     "content-type": "application/json"
@@ -73,7 +73,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             console.log(drive_data);
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/adminlogin/companies',
+                url: '/adminlogin/companies',
                 json: true,
                 headers: {
                     "content-type": "application/json"
@@ -214,7 +214,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         }
 
         $scope.getData = function(){
-            $http.post('http://localhost:3000/login/companies').success(function(response){
+            $http.post('/login/companies').success(function(response){
                 //$scope.signupResponse = response.success;
                 console.log(response);
                 $scope.x = response;
@@ -280,7 +280,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             };
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/adminlogin/students',
+                url: '/adminlogin/students',
                 json: true,
                 headers: {
                     "content-type": "application/json"
@@ -341,7 +341,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         {
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/adminlogin/companies'
+                url: '/adminlogin/companies'
             }).then(function successCallback(response) {
                 // this callback will be called asynchronously
                 // when the response is available
@@ -383,7 +383,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/adminlogin/update_attendance',
+                url: '/adminlogin/update_attendance',
                 json: true,
                 headers: {
                     "content-type": "application/json"

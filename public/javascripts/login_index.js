@@ -49,7 +49,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         }
 
         $scope.getData = function(){
-            $http.post('http://localhost:3000/login/companies').success(function(response){
+            $http.post('/login/companies').success(function(response){
                 //$scope.signupResponse = response.success;
                 console.log(response);
                 $scope.x = response;
@@ -67,7 +67,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             }, 5000)
         };
         $scope.logout = function() {
-            $window.location.href = "http://localhost:3000/";
+            $window.location.href = "/";
 
         };
 
@@ -157,7 +157,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             present_list = {value:"abc"};
             $http({
                 method: 'POST',
-                url: 'http://localhost:3000/login/attendance',
+                url: '/login/attendance',
                 json: true,
                 headers: {
                     "content-type": "application/json"
