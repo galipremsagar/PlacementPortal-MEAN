@@ -43,7 +43,7 @@ router.post('/drive', function(req, res, next) {
 
 
 
-        var query = client.query("CREATE TABLE "+req.body.companyName +"(pin_number numeric NOT NULL,attendance boolean,hiring_decision boolean,CONSTRAINT "+req.body.companyName+"_pkey PRIMARY KEY (pin_number)) WITH (OIDS=FALSE);");
+        var query = client.query("CREATE TABLE IF NOT EXISTS "+req.body.companyName +"(pin_number numeric NOT NULL,attendance boolean,hiring_decision boolean,CONSTRAINT "+req.body.companyName+"_pkey PRIMARY KEY (pin_number)) WITH (OIDS=FALSE);");
 
         query.on('end', function() {
             done();
