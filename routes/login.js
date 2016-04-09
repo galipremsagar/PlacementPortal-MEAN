@@ -102,7 +102,7 @@ router.post('/companies',function(req,res,next) {
 
     });
     //final_results = [];
-
+    client.end();
 });
 
 
