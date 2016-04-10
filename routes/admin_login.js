@@ -8,6 +8,7 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 var results = [];
+var approvals = [];
 
 var temp;
 function parseCookies (request) {
@@ -136,6 +137,51 @@ router.post('/companies',function(req,res,next) {
 
 });
 
+
+router.post('/getapprovals',function(req,res,next) {
+    console.log(req.body.name);
+    cookies = parseCookies(req);
+    console.log("Function called");
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+
+    var client = new pg.Client(connect_string);
+    client.connect();
+
+    pg.connect(connect_string, function(err, client, done) {
+
+        // SQL Query > Delete Data
+        var query = client.query("SELECT * FROM approvals_marks;");
+
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+            //console.log(row.company_table_name);
+            temp = {};
+            console.log("inside query:"+row.pin);
+            console.log("inside query-data:"+JSON.stringify(row.data));
+            temp['pin'] = row.pin;
+            temp['user_marks'] = row;
+            approvals.push(temp);
+            //console.log("immediately---------->"+results[row.company_table_name]);
+            console.log("approved++++",approvals);
+
+        });
+        //console.log("+++++++++++++++++++end"+results[temp]+"start+++++++++++++++++++++++++++++++++++++");
+        console.log("<------------------------results",results);
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+            console.log("came to 1st end");
+            done();
+        });
+        setTimeout(function(){
+            console.log("loop end");
+            console.log("rsul:",approvals);
+            return res.json(approvals);
+        },1000);
+    });
+    //final_results = [];
+    client.end();
+});
 
 router.get('/companies',function(req,res,next) {
 

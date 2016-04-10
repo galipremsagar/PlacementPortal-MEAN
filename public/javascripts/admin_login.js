@@ -401,28 +401,21 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
 
     })
-    .controller('approvals_AppCtrl', function($scope) {
+    .controller('approvals_AppCtrl', function($scope,$http) {
         // create a message to display in our view
-        var tabs = [
-            { title: '10th class', content: "Tabs will become paginated if there isn't enough room for them."},
-            { title: '12th class', content: "You can swipe left and right on a mobile device to change tabs."},
-            { title: '1st Sem', content: "Tabs will become paginated if there isn't enough room for them."},
-            { title: '2nd Sem', content: "You can swipe left and right on a mobile device to change tabs."},
-            { title: '3rd Sem', content: "You can bind the selected tab via the selected attribute on the md-tabs element."},
-            { title: '4th Sem', content: "If you set the selected tab binding to -1, it will leave no tab selected."},
-            { title: '5th Sem', content: "If you remove a tab, it will try to select a new one."},
-            { title: '6th Sem', content: "There's an ink bar that follows the selected tab, you can turn it off if you want."},
-            { title: '7th Sem', content: "If you set ng-disabled on a tab, it becomes unselectable. If the currently selected tab becomes disabled, it will try to select the next tab."},
-            { title: '8th Sem', content: "If you look at the source, you're using tabs to look at a demo for tabs. Recursion!"}
-        ];
+        $scope.getApprovals = function(){
+            $http.post('/adminlogin/getapprovals').success(function(response){
+                //$scope.signupResponse = response.success;
+                console.log(response);
+                $scope.users_approval = response;
+                console.log(response,"success");
 
-        $scope.tabs = tabs;
-        $scope.mobileNumber = "hi";
-        $scope.go = function()
-        {
-            $scope.mobileNumber = $scope.mobileNumber;
-            console.log($scope.mobileNumber);
+            });
+            console.log(new Date());
+
         };
+
+    $scope.getApprovals();
     })
 
     .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {

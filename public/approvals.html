@@ -1,0 +1,94 @@
+<md-card style="width: 300px;" ng-repeat="user in users_approval track by $index">
+
+    <md-card-content>
+        <h3>{{user.pin}}</h3>
+    </md-card-content>
+    <md-content class="md-padding">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="10th class">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>10th Percentage</label>
+                        <input name="score" ng-model="user.user_marks.data.tenth_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="12th class">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>12th Percentage</label>
+                        <input name="score" ng-model="user.user_marks.data.tw_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="1st Sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>1st sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem1_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="2nd sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>2nd sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem2_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="3rd sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>3rd sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem3_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="4th sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>4th sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem4_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="5th sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>5th sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem5_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="6th sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>6th sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem6_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="7th sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>7th sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem7_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+            <md-tab label="8th sem">
+                <md-content class="md-padding">
+                    <md-input-container class="md-block" flex-gt-xs="">
+                        <label>8th sem</label>
+                        <input name="score" ng-model="user.user_marks.data.sem8_score" required ng-pattern="/^[0-9]{2}$/" md-maxlength="2" ng-disabled="!editableInput">
+                    </md-input-container>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+    <div class="md-actions" layout="row" layout-align="end center">
+        <md-button class="md-raised md-warn">Reject</md-button>
+        <md-button class="md-raised" >Accept</md-button>
+    </div>
+</md-card>

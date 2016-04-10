@@ -10,6 +10,8 @@ var companies_tables = [];
 var final_results = {};
 var temp_pin;
 var profile_json;
+var marks_json;
+
 function parseCookies (request) {
     var list = {},
         rc = request.headers.cookie;
@@ -214,13 +216,125 @@ router.post('/profileupdate',function(req,res,next) {
 
                 return res.json({op:profile_json});
 
-            
+
 
             console.log("cleared....");
         },1000);
     });
 
 });
+
+
+router.post('/getmarks',function(req,res,next) {
+    console.log("came to get update");
+
+    cookies = parseCookies(req);
+    /**Verify if the user is present in the database and if
+     * present then return failure else, create the user and
+     * return success.
+     * @type {{success: boolean, date: Date, reason: string}}
+     */
+
+
+    console.log(cookies);
+
+
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+
+    var client = new pg.Client(connect_string);
+    client.connect();
+
+    pg.connect(connect_string, function(err, client, done) {
+
+        var query_1 = client.query("SELECT pin FROM auth WHERE session_key=$1;",[cookies['connect.sid']]);
+
+
+        query_1.on('row', function(row) {
+            console.log("<<<<<<<<<<ROW>>>>>>>>>>>>>>>"+row);
+            temp_pin = row.pin;
+            console.log(temp_pin);
+        });
+
+        query_1.on('end',function(row){
+            done();
+        });
+
+        console.log(cookies);
+        setTimeout(function(){
+            var query_2 = client.query("SELECT data FROM student_marks WHERE pin=$1",[temp_pin]);
+            query_2.on('row', function(row) {
+                console.log(">>>>>>>>>>>>>>>ROW<<<<<<<<<<<<<"+row);
+                marks_json = row.data;
+                console.log("THE ROW DATA IS---->");
+                console.log(marks_json);
+            });
+
+            query_2.on('end',function(row){
+                done();
+                return res.json({op:marks_json});
+            });
+
+            console.log("clearing...");
+            //results = [];
+            //companies_tables = [];
+
+
+            console.log("cleared....");
+        },1000);
+    });
+
+});
+
+
+
+router.post('/marksupdate',function(req,res,next) {
+    console.log("came to marks update");
+    console.log(req.body.updated_marks);
+    cookies = parseCookies(req);
+    /**Verify if the user is present in the database and if
+     * present then return failure else, create the user and
+     * return success.
+     * @type {{success: boolean, date: Date, reason: string}}
+     */
+
+
+    console.log(cookies);
+
+
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+
+    var client = new pg.Client(connect_string);
+    client.connect();
+
+    pg.connect(connect_string, function(err, client, done) {
+
+        var query_1 = client.query("SELECT pin FROM auth WHERE session_key=$1;",[cookies['connect.sid']]);
+
+
+        query_1.on('row', function(row) {
+            console.log("<<<<<<<<<<ROW>>>>>>>>>>>>>>>"+row);
+            temp_pin = row.pin;
+            console.log(temp_pin);
+        });
+
+        query_1.on('end',function(row){
+            done();
+        });
+
+        console.log(cookies);
+        setTimeout(function(){
+            client.query("UPDATE approvals_marks SET data=$1 WHERE pin=$2;",[req.body.updated_marks,temp_pin]);
+
+            return res.json({op:profile_json});
+
+            console.log("cleared....");
+        },1000);
+    });
+
+});
+
+
+
 router.post('/attendance',function(req,res,next){
     console.log("INSIDE ATTENDANCE");
     cookies = parseCookies(req);

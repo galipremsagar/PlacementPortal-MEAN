@@ -242,28 +242,50 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         }
         $scope.getProfileData();
     })
-    .controller('Marks_AppCtrl', function($scope) {
+    .controller('Marks_AppCtrl', function($scope,$http,$window) {
         // create a message to display in our view
-        var tabs = [
-            { title: '10th class', content: "Tabs will become paginated if there isn't enough room for them."},
-            { title: '12th class', content: "You can swipe left and right on a mobile device to change tabs."},
-            { title: '1st Sem', content: "Tabs will become paginated if there isn't enough room for them."},
-            { title: '2nd Sem', content: "You can swipe left and right on a mobile device to change tabs."},
-            { title: '3rd Sem', content: "You can bind the selected tab via the selected attribute on the md-tabs element."},
-            { title: '4th Sem', content: "If you set the selected tab binding to -1, it will leave no tab selected."},
-            { title: '5th Sem', content: "If you remove a tab, it will try to select a new one."},
-            { title: '6th Sem', content: "There's an ink bar that follows the selected tab, you can turn it off if you want."},
-            { title: '7th Sem', content: "If you set ng-disabled on a tab, it becomes unselectable. If the currently selected tab becomes disabled, it will try to select the next tab."},
-            { title: '8th Sem', content: "If you look at the source, you're using tabs to look at a demo for tabs. Recursion!"}
-        ];
 
-        $scope.tabs = tabs;
-        $scope.mobileNumber = "hi";
-        $scope.go = function()
+
+        $scope.getMarks = function()
         {
-            $scope.mobileNumber = $scope.mobileNumber;
-            console.log($scope.mobileNumber);
+            console.log("loading marks data");
+            $http.post('/login/getmarks').success(function(response){
+                //$scope.signupResponse = response.success;
+                console.log(response);
+                $scope.user_marks = response.op;
+
+                console.log(response,"success");
+
+            });
+            $scope.user_marks = "{}";
         };
+
+        $scope.updateMarks = function () {
+            profile = {
+                updated_marks : $scope.user_marks
+            };
+
+            $http({
+                method: 'POST',
+                url: '/login/marksupdate',
+                json: true,
+                headers: {
+                    "content-type": "application/json"
+                },
+                data : profile
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+
+                $window.alert("Success");
+            }, function errorCallback(response) {
+                console.log("HTTP:ERROR CALLBACK");
+            });
+
+            $scope.getMarks();
+        };
+
+        $scope.getMarks();
     })
 
     .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
