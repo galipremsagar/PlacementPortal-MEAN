@@ -401,7 +401,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
 
     })
-    .controller('approvals_AppCtrl', function($scope,$http) {
+    .controller('approvals_AppCtrl', function($scope,$http,$window) {
         // create a message to display in our view
         $scope.getApprovals = function(){
             $http.post('/adminlogin/getapprovals').success(function(response){
@@ -414,7 +414,33 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             console.log(new Date());
 
         };
+        $scope.reject = function (index) {
+            console.log($scope.users_approval[index]);
+            profile = {
+                pin_num : $scope.users_approval[index].pin
+            };
+            console.log(profile);
+            $http({
+                method: 'POST',
+                url: '/adminlogin/reject',
+                json: true,
+                headers: {
+                    "content-type": "application/json"
+                },
+                data : profile
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
 
+                $window.alert("Success");
+            }, function errorCallback(response) {
+                console.log("HTTP:ERROR CALLBACK");
+            });
+        };
+
+        $scope.accept = function (index) {
+            console.log($scope.users_approval[index]);
+        };
     $scope.getApprovals();
     })
 

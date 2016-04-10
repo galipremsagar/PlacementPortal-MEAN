@@ -137,6 +137,30 @@ router.post('/companies',function(req,res,next) {
 
 });
 
+router.post('/reject',function(req,res,next) {
+    console.log("came to reject");
+    console.log(req.body);
+
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+
+    var client = new pg.Client(connect_string);
+    client.connect();
+
+    pg.connect(connect_string, function(err, client, done) {
+
+        var query_1 = client.query("DELETE FROM approvals_marks WHERE pin=$1;",[parseInt(req.body.pin_num)]);
+
+
+        query_1.on('end',function(row){
+            done();
+            return res.json({op:"success"});
+        });
+
+    });
+
+});
+
+
 
 router.post('/getapprovals',function(req,res,next) {
     console.log(req.body.name);
@@ -146,7 +170,7 @@ router.post('/getapprovals',function(req,res,next) {
 
     var client = new pg.Client(connect_string);
     client.connect();
-
+    approvals = [];
     pg.connect(connect_string, function(err, client, done) {
 
         // SQL Query > Delete Data
