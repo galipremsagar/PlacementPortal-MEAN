@@ -440,6 +440,26 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
 
         $scope.accept = function (index) {
             console.log($scope.users_approval[index]);
+            profile = {
+                pin_num : $scope.users_approval[index].pin
+            };
+            console.log(profile);
+            $http({
+                method: 'POST',
+                url: '/adminlogin/accept',
+                json: true,
+                headers: {
+                    "content-type": "application/json"
+                },
+                data : profile
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+
+                $window.alert("Success");
+            }, function errorCallback(response) {
+                console.log("HTTP:ERROR CALLBACK");
+            });
         };
     $scope.getApprovals();
     })

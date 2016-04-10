@@ -160,6 +160,43 @@ router.post('/reject',function(req,res,next) {
 
 });
 
+router.post('/accept',function(req,res,next) {
+    console.log("came to accept");
+    console.log(req.body);
+
+    var connect_string = "postgres://postgres:prem@localhost:5432/tnp";
+
+    var client = new pg.Client(connect_string);
+    client.connect();
+
+    pg.connect(connect_string, function(err, client, done) {
+
+        var query_1 = client.query("SELECT * FROM approvals_marks WHERE pin=$1;",[parseInt(req.body.pin_num)]);
+
+
+        query_1.on('row', function(row) {
+            console.log("<<<<<<<<<<ROW>>>>>>>>>>>>>>>"+row);
+            temp_approv = row;
+            console.log(temp_approv);
+        });
+
+
+        query_1.on('end',function(row){
+            done();
+        });
+        setTimeout(function(){
+            client.query("UPDATE student_marks SET data=$1 WHERE pin=$2;",[temp_approv.data,parseInt(req.body.pin_num)]);
+
+            return res.json({op:"success"});
+
+            console.log("cleared....");
+        },1000);
+
+
+    });
+
+});
+
 
 
 router.post('/getapprovals',function(req,res,next) {
