@@ -2,24 +2,24 @@
     <md-content layout-padding="" style="overflow: hidden;">
 
         <div >
-            <form name="userForm">
+            <form name="userForm" onload="getProfileData();">
                 <div class="bottom-sheet-demo inset" layout="row" layout-sm="column" layout-align="center" >
                     <md-button class="md-raised md-warn" ng-click="editableInput=true">EDIT</md-button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <md-button class="md-raised " ng-click="editableInput=false; showAdvanced($event); ">SAVE</md-button>
+                    <md-button class="md-raised " ng-click="editableInput=false; doSave(); ">SAVE</md-button>
                 </div>
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-xs="">
                         <label>First name</label>
-                        <input ng-model="user.firstName" ng-disabled="!editableInput">
+                        <input ng-model="user.firstName" required="Mandatory" ng-disabled="!editableInput">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Last Name</label>
-                        <input ng-model="user.lastName" ng-disabled="!editableInput">
+                        <input ng-model="user.lastName" required ng-disabled="!editableInput">
                     </md-input-container>
                 </div>
 

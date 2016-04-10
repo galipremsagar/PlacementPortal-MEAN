@@ -84,7 +84,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             );
         };
         // Kick off the interval
-        $scope.intervalFunction();
+        //$scope.intervalFunction();
         console.log("hi");
 
 
@@ -183,7 +183,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
     })
 
 
-    .controller('Profile_AppCtrl', function($scope,$mdDialog, $mdMedia) {
+    .controller('Profile_AppCtrl', function($scope,$mdDialog, $mdMedia,$http,$window) {
         // create a message to display in our view
         $scope.message = 'Everyone come and see how good I look!';
         $scope.go = function(){
@@ -193,28 +193,42 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             return {abbrev: state};
         });
 
-        $scope.showAdvanced = function(ev) {
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
-            $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: '/profile_confirm.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose:true,
-                    fullscreen: useFullScreen
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-            $scope.$watch(function() {
-                return $mdMedia('xs') || $mdMedia('sm');
-            }, function(wantsFullScreen) {
-                $scope.customFullscreen = (wantsFullScreen === true);
+        $scope.doSave = function() {
+
+            profile = {
+                updated_profile : $scope.user
+            };
+
+            $http({
+                method: 'POST',
+                url: '/login/profileupdate',
+                json: true,
+                headers: {
+                    "content-type": "application/json"
+                },
+                data : profile
+            }).then(function successCallback(response) {
+                // this callback will be called asynchronously
+                // when the response is available
+
+                $window.alert("Success");
+            }, function errorCallback(response) {
+                console.log("HTTP:ERROR CALLBACK");
             });
         };
 
+        $scope.getProfileData = function () {
+
+            console.log("loading profile data");
+            $http.post('/login/getprofiledata').success(function(response){
+                //$scope.signupResponse = response.success;
+                console.log(response);
+                $scope.user = response.op;
+                $scope.user.dateOfBirth = new Date(response.op.dateOfBirth);
+                console.log(response,"success");
+
+            });
+        };
         function DialogController($scope, $mdDialog) {
             $scope.hide = function() {
                 $mdDialog.hide();
@@ -226,6 +240,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
                 $mdDialog.hide(answer);
             };
         }
+        $scope.getProfileData();
     })
     .controller('Marks_AppCtrl', function($scope) {
         // create a message to display in our view
