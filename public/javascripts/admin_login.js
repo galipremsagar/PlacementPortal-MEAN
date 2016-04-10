@@ -436,6 +436,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             }, function errorCallback(response) {
                 console.log("HTTP:ERROR CALLBACK");
             });
+            $scope.getApprovals();
         };
 
         $scope.accept = function (index) {
@@ -460,6 +461,9 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             }, function errorCallback(response) {
                 console.log("HTTP:ERROR CALLBACK");
             });
+
+            $scope.reject(index);
+            $scope.getApprovals();
         };
     $scope.getApprovals();
     })
