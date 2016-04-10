@@ -84,7 +84,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             );
         };
         // Kick off the interval
-        //$scope.intervalFunction();
+        $scope.intervalFunction();
         console.log("hi");
 
 

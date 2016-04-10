@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5340523-0ad6-420b-bc7d-eca18cd9a950" name="Default" comment="hdfhgfghv">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/admin_login.js" afterPath="$PROJECT_DIR$/public/javascripts/admin_login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/login_index.js" afterPath="$PROJECT_DIR$/public/javascripts/login_index.js" />
     </list>
     <ignored path="untitled3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="331" column="0" selection-start-line="324" selection-start-column="0" selection-end-line="331" selection-end-column="0" />
+            <state relative-caret-position="3829">
+              <caret line="321" column="11" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
               <folding>
                 <element signature="e#2196#4774#0" expanded="false" />
                 <element signature="e#4819#5153#0" expanded="false" />
@@ -38,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_login.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin_login.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascripts/admin_login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="464" column="33" selection-start-line="464" selection-start-column="33" selection-end-line="464" selection-end-column="33" />
+            <state relative-caret-position="-17">
+              <caret line="459" column="30" selection-start-line="459" selection-start-column="30" selection-end-line="459" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -64,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login_index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login_index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascripts/login_index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="269" column="40" selection-start-line="269" selection-start-column="29" selection-end-line="269" selection-end-column="40" />
+            <state relative-caret-position="109">
+              <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -168,11 +168,11 @@
         <option value="$PROJECT_DIR$/public/admin_default.html" />
         <option value="$PROJECT_DIR$/public/profile.html" />
         <option value="$PROJECT_DIR$/public/marks.html" />
-        <option value="$PROJECT_DIR$/public/javascripts/login_index.js" />
         <option value="$PROJECT_DIR$/routes/login.js" />
         <option value="$PROJECT_DIR$/public/approvals.html" />
         <option value="$PROJECT_DIR$/routes/admin_login.js" />
         <option value="$PROJECT_DIR$/public/javascripts/admin_login.js" />
+        <option value="$PROJECT_DIR$/public/javascripts/login_index.js" />
       </list>
     </option>
   </component>
@@ -445,12 +445,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1450594787607</updated>
-      <workItem from="1460214873050" duration="35807000" />
+      <workItem from="1460214873050" duration="35938000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35807000" />
+    <option name="totallyTimeSpent" value="35938000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -887,27 +887,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/login_index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="269" column="40" selection-start-line="269" selection-start-column="29" selection-end-line="269" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="331" column="0" selection-start-line="324" selection-start-column="0" selection-end-line="331" selection-end-column="0" />
-          <folding>
-            <element signature="e#2196#4774#0" expanded="false" />
-            <element signature="e#4819#5153#0" expanded="false" />
-            <element signature="e#9447#12426#0" expanded="false" />
-            <element signature="e#10562#12408#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/admin_login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -924,8 +903,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/admin_login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="464" column="33" selection-start-line="464" selection-start-column="33" selection-end-line="464" selection-end-column="33" />
+        <state relative-caret-position="-17">
+          <caret line="459" column="30" selection-start-line="459" selection-start-column="30" selection-end-line="459" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3829">
+          <caret line="321" column="11" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
+          <folding>
+            <element signature="e#2196#4774#0" expanded="false" />
+            <element signature="e#4819#5153#0" expanded="false" />
+            <element signature="e#9447#12426#0" expanded="false" />
+            <element signature="e#10562#12408#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/login_index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="86" column="8" selection-start-line="86" selection-start-column="8" selection-end-line="86" selection-end-column="8" />
           <folding />
         </state>
       </provider>
