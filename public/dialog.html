@@ -1,0 +1,35 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{dialog_content.company_name}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <label>Company Description</label>:<label>{{dialog_content.company_description}}</label><br>
+                <label>Company Type</label>:<label>{{dialog_content.company_type}}</label><br>
+                <label>Package</label>:<label>{{dialog_content.ctc}}</label><br>
+                <label>Date of Drive</label>:<label>{{dialog_content.date_of_drive}}</label><br>
+                <label>Job Description</label>:<label>{{dialog_content.job_description}}</label><br>
+                <label>Job Role</label>:<label>{{dialog_content.job_role}}</label><br>
+                <label>Process</label>:<label>{{dialog_content.process}}</label><br>
+                <label>Reporting Time</label>:<label>{{dialog_content.reporting_time}}</label><br>
+                <label>Venue</label>:<label>{{dialog_content.venue}}</label><br>
+
+
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+
+            <span flex></span>
+            <md-button ng-click="answer('useful')" style="margin-right:20px;">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

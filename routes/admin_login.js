@@ -95,6 +95,13 @@ router.post('/companies',function(req,res,next) {
             done();
             console.log("first query execution done");
         });
+
+        var query_new = client.query("CREATE TABLE IF NOT EXISTS "+req.body.companyName +"(pin_number numeric NOT NULL,attendance boolean,hiring_decision boolean,CONSTRAINT "+req.body.companyName+"_pkey PRIMARY KEY (pin_number)) WITH (OIDS=FALSE);");
+
+        query_new.on('end', function() {
+            done();
+            console.log("first query execution done");
+        });
         console.log("came after first one");
         //results = [];
         for (i in req.body.branchNames)

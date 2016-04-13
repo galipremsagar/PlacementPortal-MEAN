@@ -6,6 +6,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
         console.log("loaded");
 
         $scope.toggleLeft = buildToggler('left');
+        $scope.x;
         $scope.isOpenLeft = function(){
             return $mdSidenav('left').isOpen();
         };
@@ -64,7 +65,7 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
             $timeout(function() {
                 $scope.getData();
                 $scope.intervalFunction();
-            }, 5000)
+            }, 1000)
         };
         $scope.logout = function() {
             $window.location.href = "/";
@@ -83,11 +84,41 @@ angular.module('toolbarDemo1', ['ngMaterial','ngRoute'])
                     .ok('Okay')
             );
         };
+
+        $scope.dialog_company = function(index)
+        {
+
+            console.log($scope.x);
+            console.log(index);
+            console.log($scope.x[index]);
+            $scope.dialog_content = $scope.x[index];
+            console.log("yes",$scope.dialog_content.company_name);
+            var useFullScreen = true;
+            $mdDialog.show({
+                    //.targetEvent(originatorEv)
+                scope:$scope,
+                controller: DialogController,
+                templateUrl: 'dialog.html',
+                parent: angular.element(document.body),
+
+                clickOutsideToClose:true,
+                fullscreen: useFullScreen
+        });
+        };
         // Kick off the interval
         $scope.intervalFunction();
         console.log("hi");
-
-
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+        }
     })
     .config(function($mdThemingProvider,$routeProvider) {
         $routeProvider

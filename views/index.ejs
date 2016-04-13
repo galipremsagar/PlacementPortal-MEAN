@@ -31,8 +31,18 @@
 <body >
 
 <div ng-controller="AppCtrl"  ng-cloak="" layout-fill >
-  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-    <div>
+    <img ng-src="http://2.bp.blogspot.com/-hf4LoCd-tyA/TmMPB-Qur3I/AAAAAAAAARI/e_bpi5Vc6CI/s1600/gitam.jpg" align="middle" style="
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+" class="md-card-image" alt="user avatar">
+  <md-content md-theme="docs-dark"  layout-gt-sm="row" layout-padding>
+    <div style="
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+" >
+
       <md-input-container>
         <label>PIN</label>
         <input ng-model="pin">
@@ -41,9 +51,10 @@
         <label>password</label>
         <input ng-model="password" type="password">
       </md-input-container>
-      <md-button class="md-raised" ng-click="go();">Button</md-button>
+      <md-button class="md-raised" ng-click="go();">Login</md-button>
     </div>
   </md-content>
+
 </div>
 </body>
 </html>
