@@ -166,11 +166,6 @@ router.post('/companies',function(req,res,next) {
 
 router.post('/',function(req,res,next) {
     console.log(req.body.name);
-    /**Verify if the user is present in the database and if
-     * present then return failure else, create the user and
-     * return success.
-     * @type {{success: boolean, date: Date, reason: string}}
-     */
     response_json = {json_res:["gali","sagar","gali"]};
     res.send(response_json);
 });
@@ -229,13 +224,6 @@ router.post('/getmarks',function(req,res,next) {
     console.log("came to get update");
 
     cookies = parseCookies(req);
-    /**Verify if the user is present in the database and if
-     * present then return failure else, create the user and
-     * return success.
-     * @type {{success: boolean, date: Date, reason: string}}
-     */
-
-
     console.log(cookies);
 
 
@@ -326,8 +314,6 @@ router.post('/marksupdate',function(req,res,next) {
             client.query("UPDATE approvals_marks SET data=$1 WHERE pin=$2;",[req.body.updated_marks,temp_pin]);
 
             return res.json({op:profile_json});
-
-            console.log("cleared....");
         },1000);
     });
 

@@ -334,38 +334,6 @@ router.post('/students',function(req,res,next) {
             console.log("loop end");
         },1000);
 
-        /*for (i in req.body.branchNames)
-         {
-         var query_branch = client.query("SELECT * FROM mdb WHERE (btech_percentage>= $1 AND branch= $2);",[req.body.cutoff_cgpa*10,req.body.branchNames[i]]);
-         query_branch.on('row', function (row) {
-         console.log("pushing....."+row);
-         results.push(row);
-
-         });
-
-         console.log(req.body.branchNames[i]);
-
-         }
-         console.log("outside"+results);
-         //var fetch_query = client.query("SELECT * FROM ")
-         // Stream results back one row at a time
-         /*query.on('row', function(row) {
-
-         results.push(row);
-
-         });*/
-        //console.log(yac);
-        //console.log("results",results);
-
-        // After all data is returned, close connection and return results
-        /*query_branch.on('end', function() {
-         done();
-         console.log("END");
-         return res.json({result:results});
-         });
-         */
-
-
         console.log("clearing...");
         results = [];
         console.log("cleared....");
@@ -415,11 +383,7 @@ router.post('/update_attendance',function(req,res,next) {
 
 router.post('/',function(req,res,next) {
     console.log(req.body.name);
-    /**Verify if the user is present in the database and if
-     * present then return failure else, create the user and
-     * return success.
-     * @type {{success: boolean, date: Date, reason: string}}
-     */
+   
     response_json = {json_res:["gali","sagar","gali"]};
     res.send(response_json);
 });

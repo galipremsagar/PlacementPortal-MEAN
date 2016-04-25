@@ -11,11 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/',function(req,res,next) {
     console.log(req.body.name);
-    /**Verify if the user is present in the database and if
-     * present then return failure else, create the user and
-     * return success.
-     * @type {{success: boolean, date: Date, reason: string}}
-     */
+    
     response_json = {"success" : true,"date": new Date(),"reason":"User Created"};
     res.send(response_json);
 });

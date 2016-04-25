@@ -35,7 +35,6 @@ router.post('/auth', function(req, res, next) {
 
   pg.connect(connect_string, function(err, client, done) {
 
-    // SQL Query > Delete Data
     var query = client.query("SELECT * FROM auth WHERE pin=$1;",[parseInt(req.body.pin,10)]);
 
     console.log("This is the query...");
@@ -62,7 +61,6 @@ router.post('/auth', function(req, res, next) {
     // After all data is returned, close connection and return results
     query.on('end', function() {
       done();
-      //return res.json(results);
     });
 
 
@@ -71,10 +69,6 @@ router.post('/auth', function(req, res, next) {
     console.log("cleared....");
   });
 
-
-  //return res.status(200).send({ redirect:"/login"});
-
-  //return res.status(500).send({ redirect:"/index"});
 });
 
 module.exports = router;
