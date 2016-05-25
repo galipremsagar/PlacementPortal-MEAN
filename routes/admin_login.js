@@ -1,9 +1,7 @@
 /**
  * Created by KH9143 on 09-02-2016.
  */
-/**
- * Created by KH9143 on 27-12-2015.
- */
+
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
